@@ -9,9 +9,7 @@ public class SorterTest {
   @DataProvider(name = "sortDataProvider")
   public Object[][] sortDataProvider() {
     return new Object[][] {
-            {new int[] {0, 0, 1}, new int[] {0, 0, 1}},
-
-            {new int[0], new int[0]},
+      {new int[0], new int[0]},
       {new int[] {0}, new int[] {0}},
       {new int[] {0, 1}, new int[] {0, 1}},
       {new int[] {0, 1, 2}, new int[] {0, 1, 2}},
@@ -63,14 +61,14 @@ public class SorterTest {
         sorted);
   }
 
-    @Test(dataProvider = "sortDataProvider")
-    public void testQuickSort(int[] unSorted, int[] sorted) {
-        int[] workingCopy = Arrays.copyOf(unSorted, unSorted.length);
-        Sorter sorter = new Sorter();
-        sorter.doQuickSort(workingCopy);
-        Assert.assertArrayEquals(
-                "For " + Arrays.toString(unSorted) + ", obtained " + Arrays.toString(workingCopy),
-                workingCopy,
-                sorted);
-    }
+  @Test(dataProvider = "sortDataProvider")
+  public void testQuickSort(int[] unSorted, int[] sorted) {
+    int[] workingCopy = Arrays.copyOf(unSorted, unSorted.length);
+    Sorter sorter = new Sorter();
+    sorter.doQuickSort(workingCopy);
+    Assert.assertArrayEquals(
+        "For " + Arrays.toString(unSorted) + ", obtained " + Arrays.toString(workingCopy),
+        workingCopy,
+        sorted);
+  }
 }
