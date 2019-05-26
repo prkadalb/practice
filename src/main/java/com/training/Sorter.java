@@ -4,19 +4,21 @@ package com.training;
 public class Sorter {
 
   public void doBubbleSort(int a[]) {
+
     int lastIdx = a.length - 1;
+
     for (int unsortedSubarrayEndIdx = lastIdx;
         unsortedSubarrayEndIdx > 0;
         unsortedSubarrayEndIdx--) {
+
       boolean swapsDone = false;
       for (int i = 0; i < unsortedSubarrayEndIdx; i++) {
         if (a[i] > a[i + 1]) {
-          int tmp = a[i + 1];
-          a[i + 1] = a[i];
-          a[i] = tmp;
+          swap(a, i, i + 1);
           swapsDone = true;
         }
       }
+
       if (!swapsDone) {
         // No swaps were done. The array is in order
         return;
@@ -25,12 +27,16 @@ public class Sorter {
   }
 
   public void doSelectionSort(int a[]) {
+
     int lastIdx = a.length - 1;
+
     for (int unsortedSubarrayBeginIdx = 0;
         unsortedSubarrayBeginIdx < lastIdx;
         unsortedSubarrayBeginIdx++) {
+
       int min = a[unsortedSubarrayBeginIdx];
       int minIdx = unsortedSubarrayBeginIdx;
+
       // Find the minimum in the unsorted subarray
       for (int i = unsortedSubarrayBeginIdx + 1; i <= lastIdx; i++) {
         if (a[i] < min) {
@@ -38,6 +44,7 @@ public class Sorter {
           minIdx = i;
         }
       }
+
       // put it in the beginning of the unsorted subarray
       if (minIdx != unsortedSubarrayBeginIdx) {
         a[minIdx] = a[unsortedSubarrayBeginIdx];
@@ -47,13 +54,18 @@ public class Sorter {
   }
 
   public void doInsertionSort(int a[]) {
+
     int lastIdx = a.length - 1;
+
     for (int unsortedSubarrayBeginIdx = 0;
         unsortedSubarrayBeginIdx <= lastIdx;
         unsortedSubarrayBeginIdx++) {
+
       int elementToBeInserted = a[unsortedSubarrayBeginIdx];
       int currentPositionOfElementToBeInserted = unsortedSubarrayBeginIdx;
+
       for (int i = unsortedSubarrayBeginIdx - 1; i >= 0; i--) {
+
         if (a[i] > elementToBeInserted) {
           a[currentPositionOfElementToBeInserted] = a[i];
           a[i] = elementToBeInserted;
@@ -61,6 +73,7 @@ public class Sorter {
         } else {
           break;
         }
+
       }
     }
   }
@@ -71,8 +84,8 @@ public class Sorter {
 
   private void doQuickSort(int a[], int beginIdx, int endIdx) {
     int length = endIdx - beginIdx + 1;
-    if (length
-        <= 1) { // array of 1 element is already sorted. Empty array doesn't need to be processed
+    if (length <= 1) {
+      // array of 1 element is already sorted. Empty array doesn't need to be processed
       return;
     }
     int partitionPoint = partition(a, beginIdx, endIdx);
@@ -102,9 +115,7 @@ public class Sorter {
         if (pivotIdx > p1) {
           // p1 got blocked by a number larger than the pivot. Put the pivot in the correct place
           // Eg: 0 1 5 2, where 2 is the pivot and p1 is pointing to 5
-          int tmp = a[p1];
-          a[p1] = pivot;
-          a[pivotIdx] = tmp;
+          swap(a, p1, pivotIdx);
           pivotIdx = p1;
         } else {
           // p1 is after the pivot, which is okay as pivot should already be in its correct place
@@ -112,10 +123,14 @@ public class Sorter {
         }
         return pivotIdx;
       } else {
-        int tmp = a[p2];
-        a[p2] = a[p1];
-        a[p1] = tmp;
+        swap(a, p1, p2);
       }
     }
+  }
+
+  private void swap(int[] a, int x, int y) {
+    int tmp = a[x];
+    a[x] = a[y];
+    a[y] = tmp;
   }
 }
