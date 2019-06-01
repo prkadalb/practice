@@ -28,7 +28,7 @@ public class EightQueens {
                 continue;
               }
               for (int c5 = 0; c5 < 8; c5++) {
-                if (collision(0, c0, 4, c4)
+                if (collision(0, c0, 5, c5)
                     || collision(1, c1, 5, c5)
                     || collision(2, c2, 5, c5)
                     || collision(3, c3, 5, c5)
@@ -36,7 +36,7 @@ public class EightQueens {
                   continue;
                 }
                 for (int c6 = 0; c6 < 8; c6++) {
-                  if (collision(0, c0, 4, c4)
+                  if (collision(0, c0, 6, c6)
                       || collision(1, c1, 6, c6)
                       || collision(2, c2, 6, c6)
                       || collision(3, c3, 6, c6)
@@ -45,7 +45,7 @@ public class EightQueens {
                     continue;
                   }
                   for (int c7 = 0; c7 < 8; c7++) {
-                    if (collision(0, c0, 4, c4)
+                    if (collision(0, c0, 7, c7)
                         || collision(1, c1, 7, c7)
                         || collision(2, c2, 7, c7)
                         || collision(3, c3, 7, c7)
