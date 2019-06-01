@@ -1,12 +1,43 @@
 package com.training;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EightQueens {
 
   public static void main(String[] args) {
-    new EightQueens().solve();
+    List<Integer> solutions = new EightQueens().solve();
+
+    List<Integer> bruteForceSolutions = new EightQueens().solveByBruteForce();
+    boolean errorsExist = false;
+    for (int solution : solutions) {
+      if (bruteForceSolutions.contains(solution)) {
+        System.out.println("CORRECT: " + solution);
+      } else {
+        errorsExist = true;
+        System.out.println("WRONG: " + solution);
+      }
+    }
+    for (int solution : bruteForceSolutions) {
+      if (!solutions.contains(solution)) {
+        errorsExist = true;
+        System.out.println("MISSING: " + solution);
+      }
+    }
+    if (!errorsExist) {
+      System.out.println("The algorithm is correct");
+    } else {
+      System.out.println("The algorithm is wrong. See mismatches above");
+    }
   }
 
-  public void solve() {
+  public List<Integer> solve() {
+    // TODO: Find a better way to solve it
+    return solveByBruteForce();
+  }
+
+  public List<Integer> solveByBruteForce() {
+    List<Integer> solutions = new ArrayList<>();
     for (int c0 = 0; c0 < 8; c0++) { // column of the first row
       for (int c1 = 0; c1 < 8; c1++) { // column of the second row
         if (collision(0, c0, 1, c1)) {
@@ -54,10 +85,11 @@ public class EightQueens {
                         || collision(6, c6, 7, c7)) {
                       continue;
                     }
-                    System.out.println(
-                        String.format(
-                            "%d%d%d%d%d%d%d%d",
-                            c0 + 1, c1 + 1, c2 + 1, c3 + 1, c4 + 1, c5 + 1, c6 + 1, c7 + 1));
+                    solutions.add(
+                        toInt(
+                            new int[] {
+                              c0 + 1, c1 + 1, c2 + 1, c3 + 1, c4 + 1, c5 + 1, c6 + 1, c7 + 1
+                            }));
                   }
                 }
               }
@@ -66,6 +98,7 @@ public class EightQueens {
         }
       }
     }
+    return solutions;
   }
 
   private static boolean collision(int row1, int col1, int row2, int col2) {
@@ -77,5 +110,17 @@ public class EightQueens {
     int diagonalColumn2OnRow2 = col1 - delta;
     if (diagonalColumn2OnRow2 == col2) return true;
     return false;
+  }
+
+  private static int toInt(int[] cols) {
+    return (int)
+        (cols[0] * 1e7
+            + cols[1] * 1e6
+            + cols[2] * 1e5
+            + cols[3] * 1e4
+            + cols[4] * 1e3
+            + cols[5] * 1e2
+            + cols[6] * 1e1
+            + cols[7]);
   }
 }
