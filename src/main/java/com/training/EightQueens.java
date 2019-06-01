@@ -25,7 +25,8 @@ public class EightQueens {
       }
     }
     if (!errorsExist) {
-      System.out.println("The algorithm is correct");
+      System.out.println(
+          "The algorithm is correct. " + bruteForceSolutions.size() + " unique solutions found");
     } else {
       System.out.println("The algorithm is wrong. See mismatches above");
     }
