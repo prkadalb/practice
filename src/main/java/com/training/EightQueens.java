@@ -5,33 +5,6 @@ import java.util.List;
 
 public class EightQueens {
 
-  public static void main(String[] args) {
-    List<Integer> solutions = new EightQueens().solve();
-
-    List<Integer> bruteForceSolutions = new EightQueens().solveByBruteForce();
-    boolean errorsExist = false;
-    for (int solution : solutions) {
-      if (bruteForceSolutions.contains(solution)) {
-        System.out.println("CORRECT: " + solution);
-      } else {
-        errorsExist = true;
-        System.out.println("WRONG: " + solution);
-      }
-    }
-    for (int solution : bruteForceSolutions) {
-      if (!solutions.contains(solution)) {
-        errorsExist = true;
-        System.out.println("MISSING: " + solution);
-      }
-    }
-    if (!errorsExist) {
-      System.out.println(
-          "The algorithm is correct. " + bruteForceSolutions.size() + " unique solutions found");
-    } else {
-      System.out.println("The algorithm is wrong. See mismatches above");
-    }
-  }
-
   public List<Integer> solve() {
     return solveByBruteForceRecursive();
   }
@@ -63,6 +36,35 @@ public class EightQueens {
       }
       solution[rowIdx] = colIdx;
       placeQueenIntoSolution(solutions, solution, rowIdx + 1);
+    }
+  }
+
+  // Auxiliary methods below
+
+  public static void main(String[] args) {
+    List<Integer> solutions = new EightQueens().solve();
+
+    List<Integer> bruteForceSolutions = new EightQueens().solveByBruteForce();
+    boolean errorsExist = false;
+    for (int solution : solutions) {
+      if (bruteForceSolutions.contains(solution)) {
+        System.out.println("CORRECT: " + solution);
+      } else {
+        errorsExist = true;
+        System.out.println("WRONG: " + solution);
+      }
+    }
+    for (int solution : bruteForceSolutions) {
+      if (!solutions.contains(solution)) {
+        errorsExist = true;
+        System.out.println("MISSING: " + solution);
+      }
+    }
+    if (!errorsExist) {
+      System.out.println(
+          "The algorithm is correct. " + bruteForceSolutions.size() + " unique solutions found");
+    } else {
+      System.out.println("The algorithm is wrong. See mismatches above");
     }
   }
 
