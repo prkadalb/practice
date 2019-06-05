@@ -33,8 +33,37 @@ public class EightQueens {
   }
 
   public List<Integer> solve() {
-    // TODO: Find a better way to solve it
-    return solveByBruteForce();
+    return solveByBruteForceRecursive();
+  }
+
+  public List<Integer> solveByBruteForceRecursive() {
+    List<Integer> solutions = new ArrayList<>();
+    int[] solution = new int[8];
+    placeQueenIntoSolution(solutions, solution, 0);
+    return solutions;
+  }
+
+  private void placeQueenIntoSolution(List<Integer> solutions, int[] solution, int rowIdx) {
+    if (rowIdx > 7) {
+      solutions.add(toIntZeroIndexed(solution));
+      return;
+    }
+    nextColumn:
+    for (int colIdx = 0; colIdx < 8; colIdx++) {
+      for (int prevRowIdx = 0; prevRowIdx < rowIdx; prevRowIdx++) {
+        if (solution[prevRowIdx] == colIdx) {
+          continue nextColumn;
+        }
+        if (solution[prevRowIdx] + (rowIdx - prevRowIdx) == colIdx) {
+          continue nextColumn;
+        }
+        if (solution[prevRowIdx] - (rowIdx - prevRowIdx) == colIdx) {
+          continue nextColumn;
+        }
+      }
+      solution[rowIdx] = colIdx;
+      placeQueenIntoSolution(solutions, solution, rowIdx + 1);
+    }
   }
 
   public List<Integer> solveByBruteForce() {
@@ -123,5 +152,17 @@ public class EightQueens {
             + cols[5] * 1e2
             + cols[6] * 1e1
             + cols[7]);
+  }
+
+  private static int toIntZeroIndexed(int[] cols) {
+    return (int)
+        ((cols[0] + 1) * 1e7
+            + (cols[1] + 1) * 1e6
+            + (cols[2] + 1) * 1e5
+            + (cols[3] + 1) * 1e4
+            + (cols[4] + 1) * 1e3
+            + (cols[5] + 1) * 1e2
+            + (cols[6] + 1) * 1e1
+            + (cols[7] + 1));
   }
 }
