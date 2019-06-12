@@ -11,6 +11,7 @@ package com.training;
  * </pre>
  */
 public class Factorial {
+
   /**
    * Finds the factorial of a number using recursion
    *
