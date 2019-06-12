@@ -51,7 +51,7 @@ public class Factorial {
     return factorial;
   }
 
-  public static final int MAX_FACTORIALABLE_NUMBER = biggestAllowableNumber();
+  private static final int MAX_FACTORIALABLE_NUMBER = biggestAllowableNumber();
 
   private static int biggestAllowableNumber() {
     long limit = Long.MAX_VALUE;
