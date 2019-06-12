@@ -28,6 +28,12 @@ public class FactorialTest {
     factorial.factorialUsingRecursion(-1);
   }
 
+  @Test
+  public void testFactorialByRecursionOfLargeNumber() {
+    Factorial factorial = new Factorial();
+    Assert.assertEquals(factorial.factorialUsingRecursion(20), 2432902008176640000l);
+  }
+
   @Test(dataProvider = "sortDataProvider")
   public void testFactorial(int input, int output) {
     Factorial factorial = new Factorial();
