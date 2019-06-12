@@ -12,6 +12,7 @@ public class FactorialTest {
       {1, 1},
       {2, 2},
       {5, 5 * 4 * 3 * 2 * 1},
+      {12, 479001600}
     };
   }
 
@@ -31,6 +32,12 @@ public class FactorialTest {
   public void testFactorial(int input, int output) {
     Factorial factorial = new Factorial();
     Assert.assertEquals(factorial.factorial(input), output);
+  }
+
+  @Test
+  public void testFactorialOfLargeNumber() {
+    Factorial factorial = new Factorial();
+    Assert.assertEquals(factorial.factorial(20), 2432902008176640000l);
   }
 
   @Test(expectedExceptions = IllegalArgumentException.class)
