@@ -4,7 +4,7 @@ package com.training;
  * Number pattern for CellVal(RowNum, ColNum) = CellVal(RowNum - 1, ColNum - 1) + CellVal(RowNum -
  * 1, ColNum)
  *
- * <p>i.e.,</p>
+ * <p>i.e.,
  *
  * <pre>
  * 1
