@@ -20,8 +20,7 @@ public class ArrayRotation {
     // a b c d e f i h a j [tmp1 = g, tmp1Idx = 6]
     // Repeat until done
     // Note that if the array length is divisible by the rotation count, there will be sub-groups of
-    // indices
-    // that will rotate amongst themselves by this technique. So, repeat this for all such
+    // indices that will rotate amongst themselves by this technique. So, repeat this for all such
     // sub-groups
 
     nRotationCount = nRotationCount % array.length;
