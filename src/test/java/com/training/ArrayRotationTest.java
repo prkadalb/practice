@@ -16,6 +16,17 @@ public class ArrayRotationTest {
       {new Integer[] {0, 1, 2, 3, 4}, 4, new Integer[] {4, 0, 1, 2, 3}},
       {new Integer[] {0, 1, 2, 3, 4}, 5, new Integer[] {0, 1, 2, 3, 4}},
       {new Integer[] {0, 1, 2, 3, 4}, 6, new Integer[] {1, 2, 3, 4, 0}},
+      {
+        new Integer[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
+        2,
+        new Integer[] {2, 3, 4, 5, 6, 7, 8, 9, 0, 1}
+      },
+      {
+        new Integer[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+        2,
+        new Integer[] {2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 1}
+      },
+      {new Integer[] {0, 1, 2, 3}, 2, new Integer[] {2, 3, 0, 1}},
     };
   }
 

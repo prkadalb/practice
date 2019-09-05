@@ -19,22 +19,33 @@ public class ArrayRotation {
     // Put i in 6, and copy whatever is at 6 into the temporary variable (save the index too)
     // a b c d e f i h a j [tmp1 = g, tmp1Idx = 6]
     // Repeat until done
+    // Note that if the array length is divisible by the rotation count, there will be sub-groups of
+    // indices
+    // that will rotate amongst themselves by this technique. So, repeat this for all such
+    // sub-groups
 
     nRotationCount = nRotationCount % array.length;
     if (nRotationCount == 0) {
       return;
     }
 
-    T tmp1 = array[0];
-    int tmp1Idx = 0;
-    T tmp2 = null;
-    do {
-      int destIdx = getDesiredPosition(tmp1Idx, array.length, nRotationCount);
-      tmp2 = array[destIdx];
-      array[destIdx] = tmp1;
-      tmp1 = tmp2;
-      tmp1Idx = destIdx;
-    } while (tmp1Idx != 0); // TODO: Are we guaranteed that the last thing will be 0?
+    int nPasses = 1;
+    if (array.length % nRotationCount == 0) {
+      nPasses = nRotationCount;
+    }
+
+    for (int passStartIdx = 0; passStartIdx < nPasses; passStartIdx++) {
+      T tmp1 = array[passStartIdx];
+      int tmp1Idx = passStartIdx;
+      T tmp2 = null;
+      do {
+        int destIdx = getDesiredPosition(tmp1Idx, array.length, nRotationCount);
+        tmp2 = array[destIdx];
+        array[destIdx] = tmp1;
+        tmp1 = tmp2;
+        tmp1Idx = destIdx;
+      } while (tmp1Idx != passStartIdx);
+    }
   }
 
   private static int getDesiredPosition(int idx, int arrayLength, int nRotationCount) {
